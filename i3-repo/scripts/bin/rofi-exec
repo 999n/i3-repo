@@ -1,0 +1,9 @@
+#!/bin/bash
+# save as ~/.config/i3/scripts/cmd-search.sh
+
+cmd=$(rofi -dmenu -p "run:")
+[ -z "$cmd" ] && exit 0
+
+output=$(eval "$cmd" 2>&1)
+
+echo "$output" | rofi -dmenu -p "results" -no-custom

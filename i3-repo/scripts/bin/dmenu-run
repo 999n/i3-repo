@@ -1,0 +1,55 @@
+#!/bin/bash
+
+export PATH="$PATH:/snap/bin:/usr/local/bin:$HOME/bin"
+
+CMD=$(dmenu_path | dmenu -p "run:")
+
+[ -z "$CMD" ] && exit 0
+
+cd "$HOME"
+
+# Check if this is an ask command
+if [[ "$CMD" =~ ^ask ]]; then
+    # Extract the question part
+    question=$(echo "$CMD" | sed 's/^ask[[:space:]]*//')
+    
+    # Show a notification that we're processing
+    notify_id=$(dunstify -p -a "Ask" -u normal "Asking..." "$question")
+    
+    # Run the ask command and capture output using full path
+    OUTPUT=$("$HOME/bin/ask-wrapper" "$question" 2>&1)
+    
+    # Kill the notification
+    dunstify -C "$notify_id" 2>/dev/null
+    
+    # Show the result beautifully with a Save option
+    ACTION=$(echo "$OUTPUT" | zenity --text-info --title="Response: $question" --width=800 --height=600 --extra-button="Save" --ok-label="Close" 2>/dev/null)
+    if [ "$ACTION" = "Save" ]; then
+        SAVE_PATH=$(zenity --file-selection --save --confirm-overwrite --filename="$HOME/ask-response.txt" --title="Save Response" 2>/dev/null)
+        if [ -n "$SAVE_PATH" ]; then
+            echo "$OUTPUT" > "$SAVE_PATH"
+            dunstify -a "Ask" -u low "Response saved to $SAVE_PATH"
+        fi
+    fi
+    exit 0
+fi
+
+# Run with 1s timeout to detect GUI vs CLI
+OUTPUT=$(timeout 1s bash -c "$CMD" 2>&1)
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -eq 124 ]; then
+    # Timed out = GUI app, launch it detached
+    setsid bash -c "$CMD" &
+    disown
+elif [ -n "$OUTPUT" ]; then
+    # Has output = CLI command, show it
+    ACTION=$(echo -e "$ $CMD\n\n$OUTPUT" | zenity --text-info --title="Output: $CMD" --width=800 --height=600 --extra-button="Save" --ok-label="Close" 2>/dev/null)
+    if [ "$ACTION" = "Save" ]; then
+        SAVE_PATH=$(zenity --file-selection --save --confirm-overwrite --filename="$HOME/output.txt" --title="Save Command Output" 2>/dev/null)
+        if [ -n "$SAVE_PATH" ]; then
+            echo -e "$ $CMD\n\n$OUTPUT" > "$SAVE_PATH"
+            dunstify -a "dmenu-run" -u low "Command output saved to $SAVE_PATH"
+        fi
+    fi
+fi

@@ -1,0 +1,2025 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# 🎨 BASIC SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════
+
+set $mod Mod1
+bindsym F4 kill
+font pango:choco cooky 12
+#font losevka Font 20
+
+# Color variables (defined early for use throughout config)
+
+title_align center
+gaps bottom 26
+gaps right 719
+gaps left 20
+gaps top 10
+smart_gaps off
+new_window none
+new_float none
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🎨 MONOCHROME BLACK & WHITE 
+# ═══════════════════════════════════════════════════════════════════════════
+set $bg-light       #0e0e1a
+set $bg-medium      #07070e
+set $bg-darker      #07070e
+set $accent         #180208
+set $accent-dim     #bbbbbb
+set $text-primary   #ffffff
+set $text-secondary #bbbbbb
+set $text-muted     #555555
+set $urgent         #ffffff
+set $indicator      #ffffff
+set $stale          #bbbbbb
+client.focused          $accent       $bg-medium     $text-primary   $accent-dim   $accent
+client.focused_inactive $bg-darker       $bg-darker     #00000000       $text-muted   $bg-light
+client.unfocused         $bg-darker   $bg-darker     #00000000       $bg-darker    $bg-darker
+client.urgent           $urgent       $urgent        $text-primary   $urgent       $urgent
+client.placeholder      $bg-darker    $bg-medium     $text-muted     $bg-darker    $bg-darker
+client.background       $bg-medium
+# ═══════════════════════════════════════════════════════════════════════════
+# 🪟 WINDOW APPEARANCE
+# ═══════════════════════════════════════════════════════════════════════════
+default_border 1pixel 
+default_floating_border normal 3
+smart_borders no_gaps
+default_orientation auto
+for_window [urgent=latest] focus
+workspace_layout tabbed
+#tiling_drag_threshold 20
+for_window [all] title_format "  <i>%title </i> "
+bindsym Mod4+g exec --no-startup-id ~/i3-repo/scripts/bin/float-expose.sh
+bindsym Mod4+q exec --no-startup-id ~/i3-repo/scripts/bin/float-peek.sh
+#bindsym Mod4+g exec --no-startup-id ~/i3-repo/scripts/bin/tiled-expose.sh
+bindsym Mod4+h exec --no-startup-id ~/i3-repo/scripts/bin/window-jump.sh
+bindsym Mod4+Shift+h exec --no-startup-id ~/i3-repo/scripts/bin/zone-swap.sh
+bindsym Mod4+Shift+g exec --no-startup-id ~/i3-repo/scripts/bin/personality-swap.sh
+bindsym Mod4+Shift+z exec --no-startup-id ~/i3-repo/scripts/bin/float-hide-all.sh
+bindsym Mod4+Shift+i exec --no-startup-id ~/i3-repo/scripts/bin/float-pin.sh
+bindsym Mod4+Shift+k exec --no-startup-id ~/i3-repo/scripts/bin/float-graveyard.sh --pick
+bindsym Mod4+Shift+v exec --no-startup-id ~/i3-repo/scripts/bin/focus-lock.sh
+# ═══════════════════════════════════════════════════════════════════════════
+# 🚀 WORKSPACES
+# ═══════════════════════════════════════════════════════════════════════════
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id ~/i3-repo/scripts/bin/dmenu-run
+bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'Rename: '
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+workspace_auto_back_and_forth yes
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym Mod4+Tab workspace next
+bindsym Mod4+Shift+Tab workspace prev
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🧭 FOCUS & NAVIGATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+i focus up
+bindsym $mod+l focus right
+
+
+bindsym mod4+i exec --no-startup-id "i3-msg focus up && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+bindsym mod4+j exec --no-startup-id "i3-msg focus left && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+bindsym mod4+k exec --no-startup-id "i3-msg focus down && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+bindsym mod4+l exec --no-startup-id "i3-msg focus right && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+bindsym $mod+Tab exec --no-startup-id "i3-msg focus right && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+bindsym $mod+Shift+Tab exec --no-startup-id "i3-msg focus left && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+
+#bindsym $mod+shift+Tab exec --no-startup-id "i3-msg focus down && xdotool mousemove --window $(xdotool getwindowfocus) --sync 50% 50%"
+
+bindsym $mod+a focus parent
+bindsym $mod+p focus child
+
+bindsym Mod4+m focus output up
+
+bindsym $mod+Shift+greater focus output next
+bindsym $mod+Shift+less focus output prev
+bindsym $mod+Ctrl+Shift+greater move workspace to output next
+bindsym $mod+Ctrl+Shift+less move workspace to output prev
+exec_always --no-startup-id dunst
+# Consolidated dialog floating rules
+for_window [window_role="GtkFileChooserDialog"] floating enable, sticky enable, focus, move position center
+for_window [window_type="dialog"]               floating enable, sticky enable, focus, move position center
+for_window [window_role="dialog"]               floating enable, sticky enable, focus, move position center
+for_window [window_role="pop-up"]               floating enable, sticky enable, focus, move position center
+for_window [window_role="task_dialog"]          floating enable, sticky enable, focus, move position center
+for_window [window_type="popup_menu"]           floating enable, focus
+
+focus_follows_mouse no
+focus_on_window_activation focus
+exec --no-startup-id keynav
+exec --no-startup-id ~/i3-repo/scripts/bin/picom --config ~/.config/picom/picom.conf -b --log-file /tmp/picom.log
+
+popup_during_fullscreen leave_fullscreen
+force_display_urgency_hint 0 ms
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 📐 LAYOUTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym $mod+h split h
+bindsym $mod+e layout toggle split
+bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle split tabbed
+bindsym $mod+f fullscreen toggle
+bindsym F9 exec --no-startup-id ~/i3-repo/scripts/i3/cycle-quick.sh
+bindsym F10 exec --no-startup-id ~/i3-repo/scripts/i3/cycle-quick.sh reverse
+bindsym $mod+Mod4+m exec --no-startup-id ~/i3-repo/scripts/i3/mark-quick.sh
+bindsym $mod+Mod4+shift+m exec --no-startup-id ~/i3-repo/scripts/i3/unmark-focused.sh
+bindsym Mod4+F10 exec --no-startup-id ~/i3-repo/scripts/bin/mark-unmarked.sh
+
+# Create window group (pick marked windows, name it): Mod4+a
+#bindsym Mod4+a exec --no-startup-id ~/i3-repo/scripts/i3/new-group.sh
+# Cycle through active group: Mod4+shift+a
+bindsym Mod4+shift+a exec --no-startup-id ~/i3-repo/scripts/i3/cycle-group.sh
+# Edit group: Mod4+Ctrl+a
+bindsym Mod4+ctrl+a exec --no-startup-id ~/i3-repo/scripts/i3/edit-window-group.sh
+bindsym F1 focus mode_toggle
+#bindsym Mod4+v exec ~/i3-repo/scripts/bin/cursor-jump.sh
+bindsym Mod4+v exec --no-startup-id ~/i3-repo/scripts/bin/float-trail.sh
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🪟 WINDOW MOVEMENT
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym $mod+Shift+j move left 15
+bindsym $mod+Shift+k move down 15
+bindsym $mod+Shift+i move up 15
+bindsym $mod+Shift+l move right 15
+
+bindsym $mod+x kill
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🏷️ MARKS - Window Bookmarking System
+# ═══════════════════════════════════════════════════════════════════════════
+bindsym $mod+period exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 MARK MODE — press a letter'" ; mode "mark"
+mode "mark" {
+    bindsym a exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 a → digit (1-7) or Enter for a'" ; mode "mark_a"
+    bindsym b exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 b → digit (1-7) or Enter for b'" ; mode "mark_b"
+    bindsym c exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 c → digit (1-7) or Enter for c'" ; mode "mark_c"
+    bindsym d exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 d → digit (1-7) or Enter for d'" ; mode "mark_d"
+    bindsym e exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 e → digit (1-7) or Enter for e'" ; mode "mark_e"
+    bindsym f exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 f → digit (1-7) or Enter for f'" ; mode "mark_f"
+    bindsym g exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 g → digit (1-7) or Enter for g'" ; mode "mark_g"
+    bindsym h exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 h → digit (1-7) or Enter for h'" ; mode "mark_h"
+    bindsym i exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 i → digit (1-7) or Enter for i'" ; mode "mark_i"
+    bindsym j exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 j → digit (1-7) or Enter for j'" ; mode "mark_j"
+    bindsym k exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 k → digit (1-7) or Enter for k'" ; mode "mark_k"
+    bindsym l exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 l → digit (1-7) or Enter for l'" ; mode "mark_l"
+    bindsym m exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 m → digit (1-7) or Enter for m'" ; mode "mark_m"
+    bindsym n exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 n → digit (1-7) or Enter for n'" ; mode "mark_n"
+    bindsym o exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 o → digit (1-7) or Enter for o'" ; mode "mark_o"
+    bindsym p exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 p → digit (1-7) or Enter for p'" ; mode "mark_p"
+    bindsym q exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 q → digit (1-7) or Enter for q'" ; mode "mark_q"
+    bindsym r exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 r → digit (1-7) or Enter for r'" ; mode "mark_r"
+    bindsym s exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 s → digit (1-7) or Enter for s'" ; mode "mark_s"
+    bindsym t exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 t → digit (1-7) or Enter for t'" ; mode "mark_t"
+    bindsym u exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 u → digit (1-7) or Enter for u'" ; mode "mark_u"
+    bindsym v exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 v → digit (1-7) or Enter for v'" ; mode "mark_v"
+    bindsym w exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 w → digit (1-7) or Enter for w'" ; mode "mark_w"
+    bindsym x exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 x → digit (1-7) or Enter for x'" ; mode "mark_x"
+    bindsym y exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 y → digit (1-7) or Enter for y'" ; mode "mark_y"
+    bindsym z exec --no-startup-id "dunstify -u normal -r 9901 -t 0 '📍 z → digit (1-7) or Enter for z'" ; mode "mark_z"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+    bindsym Return exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_a" {
+    bindsym Return mark --replace "a"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a'" ; mode "default"
+    bindsym 1 mark --replace "a1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a1'" ; mode "default"
+    bindsym 2 mark --replace "a2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a2'" ; mode "default"
+    bindsym 3 mark --replace "a3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a3'" ; mode "default"
+    bindsym 4 mark --replace "a4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a4'" ; mode "default"
+    bindsym 5 mark --replace "a5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a5'" ; mode "default"
+    bindsym 6 mark --replace "a6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a6'" ; mode "default"
+    bindsym 7 mark --replace "a7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: a7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_b" {
+    bindsym Return mark --replace "b"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b'" ; mode "default"
+    bindsym 1 mark --replace "b1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b1'" ; mode "default"
+    bindsym 2 mark --replace "b2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b2'" ; mode "default"
+    bindsym 3 mark --replace "b3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b3'" ; mode "default"
+    bindsym 4 mark --replace "b4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b4'" ; mode "default"
+    bindsym 5 mark --replace "b5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b5'" ; mode "default"
+    bindsym 6 mark --replace "b6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b6'" ; mode "default"
+    bindsym 7 mark --replace "b7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: b7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_c" {
+    bindsym Return mark --replace "c"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c'" ; mode "default"
+    bindsym 1 mark --replace "c1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c1'" ; mode "default"
+    bindsym 2 mark --replace "c2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c2'" ; mode "default"
+    bindsym 3 mark --replace "c3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c3'" ; mode "default"
+    bindsym 4 mark --replace "c4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c4'" ; mode "default"
+    bindsym 5 mark --replace "c5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c5'" ; mode "default"
+    bindsym 6 mark --replace "c6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c6'" ; mode "default"
+    bindsym 7 mark --replace "c7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: c7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_d" {
+    bindsym Return mark --replace "d"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d'" ; mode "default"
+    bindsym 1 mark --replace "d1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d1'" ; mode "default"
+    bindsym 2 mark --replace "d2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d2'" ; mode "default"
+    bindsym 3 mark --replace "d3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d3'" ; mode "default"
+    bindsym 4 mark --replace "d4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d4'" ; mode "default"
+    bindsym 5 mark --replace "d5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d5'" ; mode "default"
+    bindsym 6 mark --replace "d6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d6'" ; mode "default"
+    bindsym 7 mark --replace "d7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: d7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_e" {
+    bindsym Return mark --replace "e"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e'" ; mode "default"
+    bindsym 1 mark --replace "e1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e1'" ; mode "default"
+    bindsym 2 mark --replace "e2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e2'" ; mode "default"
+    bindsym 3 mark --replace "e3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e3'" ; mode "default"
+    bindsym 4 mark --replace "e4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e4'" ; mode "default"
+    bindsym 5 mark --replace "e5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e5'" ; mode "default"
+    bindsym 6 mark --replace "e6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e6'" ; mode "default"
+    bindsym 7 mark --replace "e7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: e7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_f" {
+    bindsym Return mark --replace "f"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f'" ; mode "default"
+    bindsym 1 mark --replace "f1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f1'" ; mode "default"
+    bindsym 2 mark --replace "f2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f2'" ; mode "default"
+    bindsym 3 mark --replace "f3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f3'" ; mode "default"
+    bindsym 4 mark --replace "f4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f4'" ; mode "default"
+    bindsym 5 mark --replace "f5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f5'" ; mode "default"
+    bindsym 6 mark --replace "f6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f6'" ; mode "default"
+    bindsym 7 mark --replace "f7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: f7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_g" {
+    bindsym Return mark --replace "g"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g'" ; mode "default"
+    bindsym 1 mark --replace "g1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g1'" ; mode "default"
+    bindsym 2 mark --replace "g2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g2'" ; mode "default"
+    bindsym 3 mark --replace "g3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g3'" ; mode "default"
+    bindsym 4 mark --replace "g4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g4'" ; mode "default"
+    bindsym 5 mark --replace "g5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g5'" ; mode "default"
+    bindsym 6 mark --replace "g6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g6'" ; mode "default"
+    bindsym 7 mark --replace "g7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: g7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_h" {
+    bindsym Return mark --replace "h"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h'" ; mode "default"
+    bindsym 1 mark --replace "h1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h1'" ; mode "default"
+    bindsym 2 mark --replace "h2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h2'" ; mode "default"
+    bindsym 3 mark --replace "h3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h3'" ; mode "default"
+    bindsym 4 mark --replace "h4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h4'" ; mode "default"
+    bindsym 5 mark --replace "h5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h5'" ; mode "default"
+    bindsym 6 mark --replace "h6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h6'" ; mode "default"
+    bindsym 7 mark --replace "h7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: h7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_i" {
+    bindsym Return mark --replace "i"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i'" ; mode "default"
+    bindsym 1 mark --replace "i1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i1'" ; mode "default"
+    bindsym 2 mark --replace "i2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i2'" ; mode "default"
+    bindsym 3 mark --replace "i3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i3'" ; mode "default"
+    bindsym 4 mark --replace "i4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i4'" ; mode "default"
+    bindsym 5 mark --replace "i5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i5'" ; mode "default"
+    bindsym 6 mark --replace "i6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i6'" ; mode "default"
+    bindsym 7 mark --replace "i7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: i7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_j" {
+    bindsym Return mark --replace "j"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j'" ; mode "default"
+    bindsym 1 mark --replace "j1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j1'" ; mode "default"
+    bindsym 2 mark --replace "j2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j2'" ; mode "default"
+    bindsym 3 mark --replace "j3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j3'" ; mode "default"
+    bindsym 4 mark --replace "j4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j4'" ; mode "default"
+    bindsym 5 mark --replace "j5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j5'" ; mode "default"
+    bindsym 6 mark --replace "j6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j6'" ; mode "default"
+    bindsym 7 mark --replace "j7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: j7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_k" {
+    bindsym Return mark --replace "k"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k'" ; mode "default"
+    bindsym 1 mark --replace "k1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k1'" ; mode "default"
+    bindsym 2 mark --replace "k2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k2'" ; mode "default"
+    bindsym 3 mark --replace "k3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k3'" ; mode "default"
+    bindsym 4 mark --replace "k4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k4'" ; mode "default"
+    bindsym 5 mark --replace "k5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k5'" ; mode "default"
+    bindsym 6 mark --replace "k6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k6'" ; mode "default"
+    bindsym 7 mark --replace "k7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: k7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_l" {
+    bindsym Return mark --replace "l"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l'" ; mode "default"
+    bindsym 1 mark --replace "l1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l1'" ; mode "default"
+    bindsym 2 mark --replace "l2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l2'" ; mode "default"
+    bindsym 3 mark --replace "l3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l3'" ; mode "default"
+    bindsym 4 mark --replace "l4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l4'" ; mode "default"
+    bindsym 5 mark --replace "l5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l5'" ; mode "default"
+    bindsym 6 mark --replace "l6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l6'" ; mode "default"
+    bindsym 7 mark --replace "l7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: l7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_m" {
+    bindsym Return mark --replace "m"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m'" ; mode "default"
+    bindsym 1 mark --replace "m1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m1'" ; mode "default"
+    bindsym 2 mark --replace "m2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m2'" ; mode "default"
+    bindsym 3 mark --replace "m3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m3'" ; mode "default"
+    bindsym 4 mark --replace "m4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m4'" ; mode "default"
+    bindsym 5 mark --replace "m5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m5'" ; mode "default"
+    bindsym 6 mark --replace "m6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m6'" ; mode "default"
+    bindsym 7 mark --replace "m7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: m7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_n" {
+    bindsym Return mark --replace "n"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n'" ; mode "default"
+    bindsym 1 mark --replace "n1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n1'" ; mode "default"
+    bindsym 2 mark --replace "n2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n2'" ; mode "default"
+    bindsym 3 mark --replace "n3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n3'" ; mode "default"
+    bindsym 4 mark --replace "n4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n4'" ; mode "default"
+    bindsym 5 mark --replace "n5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n5'" ; mode "default"
+    bindsym 6 mark --replace "n6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n6'" ; mode "default"
+    bindsym 7 mark --replace "n7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: n7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_o" {
+    bindsym Return mark --replace "o"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o'" ; mode "default"
+    bindsym 1 mark --replace "o1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o1'" ; mode "default"
+    bindsym 2 mark --replace "o2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o2'" ; mode "default"
+    bindsym 3 mark --replace "o3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o3'" ; mode "default"
+    bindsym 4 mark --replace "o4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o4'" ; mode "default"
+    bindsym 5 mark --replace "o5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o5'" ; mode "default"
+    bindsym 6 mark --replace "o6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o6'" ; mode "default"
+    bindsym 7 mark --replace "o7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: o7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_p" {
+    bindsym Return mark --replace "p"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p'" ; mode "default"
+    bindsym 1 mark --replace "p1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p1'" ; mode "default"
+    bindsym 2 mark --replace "p2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p2'" ; mode "default"
+    bindsym 3 mark --replace "p3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p3'" ; mode "default"
+    bindsym 4 mark --replace "p4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p4'" ; mode "default"
+    bindsym 5 mark --replace "p5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p5'" ; mode "default"
+    bindsym 6 mark --replace "p6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p6'" ; mode "default"
+    bindsym 7 mark --replace "p7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: p7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_q" {
+    bindsym Return mark --replace "q"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q'" ; mode "default"
+    bindsym 1 mark --replace "q1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q1'" ; mode "default"
+    bindsym 2 mark --replace "q2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q2'" ; mode "default"
+    bindsym 3 mark --replace "q3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q3'" ; mode "default"
+    bindsym 4 mark --replace "q4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q4'" ; mode "default"
+    bindsym 5 mark --replace "q5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q5'" ; mode "default"
+    bindsym 6 mark --replace "q6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q6'" ; mode "default"
+    bindsym 7 mark --replace "q7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: q7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_r" {
+    bindsym Return mark --replace "r"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r'" ; mode "default"
+    bindsym 1 mark --replace "r1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r1'" ; mode "default"
+    bindsym 2 mark --replace "r2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r2'" ; mode "default"
+    bindsym 3 mark --replace "r3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r3'" ; mode "default"
+    bindsym 4 mark --replace "r4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r4'" ; mode "default"
+    bindsym 5 mark --replace "r5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r5'" ; mode "default"
+    bindsym 6 mark --replace "r6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r6'" ; mode "default"
+    bindsym 7 mark --replace "r7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: r7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_s" {
+    bindsym Return mark --replace "s"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s'" ; mode "default"
+    bindsym 1 mark --replace "s1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s1'" ; mode "default"
+    bindsym 2 mark --replace "s2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s2'" ; mode "default"
+    bindsym 3 mark --replace "s3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s3'" ; mode "default"
+    bindsym 4 mark --replace "s4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s4'" ; mode "default"
+    bindsym 5 mark --replace "s5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s5'" ; mode "default"
+    bindsym 6 mark --replace "s6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s6'" ; mode "default"
+    bindsym 7 mark --replace "s7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: s7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_t" {
+    bindsym Return mark --replace "t"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t'" ; mode "default"
+    bindsym 1 mark --replace "t1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t1'" ; mode "default"
+    bindsym 2 mark --replace "t2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t2'" ; mode "default"
+    bindsym 3 mark --replace "t3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t3'" ; mode "default"
+    bindsym 4 mark --replace "t4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t4'" ; mode "default"
+    bindsym 5 mark --replace "t5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t5'" ; mode "default"
+    bindsym 6 mark --replace "t6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t6'" ; mode "default"
+    bindsym 7 mark --replace "t7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: t7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_u" {
+    bindsym Return mark --replace "u"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u'" ; mode "default"
+    bindsym 1 mark --replace "u1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u1'" ; mode "default"
+    bindsym 2 mark --replace "u2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u2'" ; mode "default"
+    bindsym 3 mark --replace "u3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u3'" ; mode "default"
+    bindsym 4 mark --replace "u4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u4'" ; mode "default"
+    bindsym 5 mark --replace "u5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u5'" ; mode "default"
+    bindsym 6 mark --replace "u6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u6'" ; mode "default"
+    bindsym 7 mark --replace "u7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: u7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_v" {
+    bindsym Return mark --replace "v"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v'" ; mode "default"
+    bindsym 1 mark --replace "v1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v1'" ; mode "default"
+    bindsym 2 mark --replace "v2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v2'" ; mode "default"
+    bindsym 3 mark --replace "v3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v3'" ; mode "default"
+    bindsym 4 mark --replace "v4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v4'" ; mode "default"
+    bindsym 5 mark --replace "v5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v5'" ; mode "default"
+    bindsym 6 mark --replace "v6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v6'" ; mode "default"
+    bindsym 7 mark --replace "v7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: v7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_w" {
+    bindsym Return mark --replace "w"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w'" ; mode "default"
+    bindsym 1 mark --replace "w1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w1'" ; mode "default"
+    bindsym 2 mark --replace "w2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w2'" ; mode "default"
+    bindsym 3 mark --replace "w3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w3'" ; mode "default"
+    bindsym 4 mark --replace "w4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w4'" ; mode "default"
+    bindsym 5 mark --replace "w5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w5'" ; mode "default"
+    bindsym 6 mark --replace "w6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w6'" ; mode "default"
+    bindsym 7 mark --replace "w7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: w7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_x" {
+    bindsym Return mark --replace "x"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x'" ; mode "default"
+    bindsym 1 mark --replace "x1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x1'" ; mode "default"
+    bindsym 2 mark --replace "x2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x2'" ; mode "default"
+    bindsym 3 mark --replace "x3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x3'" ; mode "default"
+    bindsym 4 mark --replace "x4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x4'" ; mode "default"
+    bindsym 5 mark --replace "x5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x5'" ; mode "default"
+    bindsym 6 mark --replace "x6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x6'" ; mode "default"
+    bindsym 7 mark --replace "x7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: x7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_y" {
+    bindsym Return mark --replace "y"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y'" ; mode "default"
+    bindsym 1 mark --replace "y1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y1'" ; mode "default"
+    bindsym 2 mark --replace "y2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y2'" ; mode "default"
+    bindsym 3 mark --replace "y3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y3'" ; mode "default"
+    bindsym 4 mark --replace "y4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y4'" ; mode "default"
+    bindsym 5 mark --replace "y5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y5'" ; mode "default"
+    bindsym 6 mark --replace "y6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y6'" ; mode "default"
+    bindsym 7 mark --replace "y7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: y7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+mode "mark_z" {
+    bindsym Return mark --replace "z"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z'" ; mode "default"
+    bindsym 1 mark --replace "z1"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z1'" ; mode "default"
+    bindsym 2 mark --replace "z2"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z2'" ; mode "default"
+    bindsym 3 mark --replace "z3"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z3'" ; mode "default"
+    bindsym 4 mark --replace "z4"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z4'" ; mode "default"
+    bindsym 5 mark --replace "z5"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z5'" ; mode "default"
+    bindsym 6 mark --replace "z6"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z6'" ; mode "default"
+    bindsym 7 mark --replace "z7"; exec --no-startup-id "dunstify -C 9901; dunstify -u low '📍 Marked: z7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9901" ; mode "default"
+}
+
+bindsym $mod+apostrophe exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh" ; mode "goto"
+mode "goto" {
+    bindsym a exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh a" ; mode "goto_a"
+    bindsym b exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh b" ; mode "goto_b"
+    bindsym c exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh c" ; mode "goto_c"
+    bindsym d exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh d" ; mode "goto_d"
+    bindsym e exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh e" ; mode "goto_e"
+    bindsym f exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh f" ; mode "goto_f"
+    bindsym g exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh g" ; mode "goto_g"
+    bindsym h exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh h" ; mode "goto_h"
+    bindsym i exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh i" ; mode "goto_i"
+    bindsym j exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh j" ; mode "goto_j"
+    bindsym k exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh k" ; mode "goto_k"
+    bindsym l exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh l" ; mode "goto_l"
+    bindsym m exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh m" ; mode "goto_m"
+    bindsym n exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh n" ; mode "goto_n"
+    bindsym o exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh o" ; mode "goto_o"
+    bindsym p exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh p" ; mode "goto_p"
+    bindsym q exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh q" ; mode "goto_q"
+    bindsym r exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh r" ; mode "goto_r"
+    bindsym s exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh s" ; mode "goto_s"
+    bindsym t exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh t" ; mode "goto_t"
+    bindsym u exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh u" ; mode "goto_u"
+    bindsym v exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh v" ; mode "goto_v"
+    bindsym w exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh w" ; mode "goto_w"
+    bindsym x exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh x" ; mode "goto_x"
+    bindsym y exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh y" ; mode "goto_y"
+    bindsym z exec --no-startup-id "~/i3-repo/scripts/i3/goto-hint.sh z" ; mode "goto_z"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+    bindsym Return exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_a" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh a7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: a7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_b" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh b7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: b7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_c" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh c7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: c7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_d" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh d7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: d7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_e" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh e7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: e7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_f" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh f7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: f7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_g" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh g7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: g7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_h" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh h7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: h7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_i" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh i7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: i7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_j" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh j7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: j7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_k" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh k7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: k7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_l" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh l7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: l7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_m" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh m7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: m7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_n" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh n7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: n7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_o" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh o7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: o7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_p" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh p7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: p7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_q" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh q7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: q7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_r" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh r7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: r7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_s" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh s7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: s7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_t" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh t7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: t7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_u" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh u7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: u7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_v" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh v7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: v7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_w" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh w7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: w7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_x" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh x7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: x7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_y" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh y7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: y7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+mode "goto_z" {
+    bindsym Return exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z'" ; mode "default"
+    bindsym 1 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z1"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z1'" ; mode "default"
+    bindsym 2 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z2"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z2'" ; mode "default"
+    bindsym 3 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z3"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z3'" ; mode "default"
+    bindsym 4 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z4"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z4'" ; mode "default"
+    bindsym 5 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z5"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z5'" ; mode "default"
+    bindsym 6 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z6"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z6'" ; mode "default"
+    bindsym 7 exec --no-startup-id "~/i3-repo/scripts/i3/goto-mark.sh z7"; exec --no-startup-id "dunstify -C 9902; dunstify -u low '🔗 Jumping to: z7'" ; mode "default"
+    bindsym Escape exec --no-startup-id "dunstify -C 9902" ; mode "default"
+}
+
+#bindsym $mod+Ctrl+apostrophe mode "move_to_mark"
+#mode "move_to_mark" {
+#    bindsym a move container to mark "a"; mode "default"
+#    bindsym b move container to mark "b"; mode "default"
+#    bindsym c move container to mark "c"; mode "default"
+#    bindsym d move container to mark "d"; mode "default"
+#    bindsym e move container to mark "e"; mode "default"
+#    bindsym f move container to mark "f"; mode "default"
+#    bindsym g move container to mark "g"; mode "default"
+#    bindsym h move container to mark "h"; mode "default"
+#    bindsym i move container to mark "i"; mode "default"
+#    bindsym j move container to mark "j"; mode "default"
+#    bindsym k move container to mark "k"; mode "default"
+#    bindsym l move container to mark "l"; mode "default"
+#    bindsym m move container to mark "m"; mode "default"
+#    bindsym n move container to mark "n"; mode "default"
+#    bindsym o move container to mark "o"; mode "default"
+#    bindsym p move container to mark "p"; mode "default"
+#    bindsym q move container to mark "q"; mode "default"
+#    bindsym r move container to mark "r"; mode "default"
+#    bindsym s move container to mark "s"; mode "default"
+#    bindsym t move container to mark "t"; mode "default"
+#    bindsym u move container to mark "u"; mode "default"
+#    bindsym Shift+z move container to mark "Shift+z"; mode "default"
+#    bindsym w move container to mark "w"; mode "default"
+#    bindsym x move container to mark "x"; mode "default"
+#    bindsym y move container to mark "y"; mode "default"
+#    bindsym z move container to mark "z"; mode "default"
+#    bindsym Escape mode "default"
+#    bindsym Return mode "default"
+#}
+bindsym $mod+Shift+Right move container to workspace next
+bindsym $mod+Shift+Left move container to workspace prev
+#bindsym $mod+Shift+apostrophe mode "swap_with_mark"
+#mode "swap_with_mark" {
+#    bindsym a swap container with mark "a"; mode "default"
+#    bindsym b swap container with mark "b"; mode "default"
+#    bindsym c swap container with mark "c"; mode "default"
+#    bindsym d swap container with mark "d"; mode "default"
+#    bindsym e swap container with mark "e"; mode "default"
+#    bindsym f swap container with mark "f"; mode "default"
+#    bindsym g swap container with mark "g"; mode "default"
+#    bindsym h swap container with mark "h"; mode "default"
+#    bindsym i swap container with mark "i"; mode "default"
+#    bindsym j swap container with mark "j"; mode "default"
+#    bindsym k swap container with mark "k"; mode "default"
+#    bindsym l swap container with mark "l"; mode "default"
+#    bindsym m swap container with mark "m"; mode "default"
+#    bindsym n swap container with mark "n"; mode "default"
+#    bindsym o swap container with mark "o"; mode "default"
+#    bindsym p swap container with mark "p"; mode "default"
+#    bindsym q swap container with mark "q"; mode "default"
+#    bindsym r swap container with mark "r"; mode "default"
+#    bindsym s swap container with mark "s"; mode "default"
+#    bindsym t swap container with mark "t"; mode "default"
+#    bindsym u swap container with mark "u"; mode "default"
+#    bindsym Shift+z swap container with mark "Shift+z"; mode "default"
+#    bindsym w swap container with mark "w"; mode "default"
+#    bindsym x swap container with mark "x"; mode "default"
+#    bindsym y swap container with mark "y"; mode "default"
+#    bindsym z swap container with mark "z"; mode "default"
+#    bindsym Escape mode "default"
+#    bindsym Return mode "default"
+#}
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# 🎈 FLOATING WINDOWS
+# ═══════════════════════════════════════════════════════════════════════════
+
+floating_modifier $mod
+exec --no-startup-id dunst
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+c move position center
+bindsym $mod+shift+c move position 0 0
+bindsym $mod+ctrl+c move position 1120 0
+bindsym $mod+ctrl+shift+c move position 0 480
+bindsym $mod+mod4+c move position 1120 480
+bindsym $mod+s exec --no-startup-id "i3-msg sticky toggle; dunstify -u low 'Sticky Window Toggled'"
+bindsym $mod+shift+minus move scratchpad
+#bindsym $mod+Ctrl+Tab focus mode_toggle
+bindsym $mod+Ctrl+f [floating] focus
+bindsym $mod+Prior focus next floating
+bindsym $mod+Next focus prev floating
+
+
+## Quick arrangements
+#bindsym $mod+Ctrl+Shift+1 floating enable; resize set 800 600; move position 100 100
+#bindsym $mod+Ctrl+Shift+2 floating enable; resize set 800 600; move position 500 100
+#bindsym $mod+Ctrl+Shift+3 floating enable; resize set 800 600; move position 100 400
+#bindsym $mod+Ctrl+Shift+4 floating enable; resize set 800 600; move position 500 400
+
+# Grid positioning
+#bindsym Mod4+Ctrl+1 move position 0 0
+#bindsym Mod4+Ctrl+2 move position center; move up 25 ppt
+#bindsym Mod4+Ctrl+3 move position center; move right 25 ppt; move up 25 ppt
+#bindsym Mod4+Ctrl+4 move position center; move left 25 ppt
+#bindsym Mod4+Ctrl+5 move position center
+#bindsym Mod4+Ctrl+6 move position center; move right 25 ppt
+#bindsym Mod4+Ctrl+7 move position 0 100 ppt; move up 230
+#bindsym Mod4+Ctrl+8 move position center; move down 25 ppt
+#bindsym Mod4+Ctrl+9 move position 100 ppt 100 ppt; move left 330; move up 230
+#bindsym Mod4+Ctrl+q move position 25 ppt 25 ppt
+bindsym Mod4+Ctrl+w move position center
+
+# Window size presets (16:9)
+bindsym $mod+Ctrl+1 resize set 320 180; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+2 resize set 426 240; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+3 resize set 568 320; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+4 resize set 758 426; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+5 resize set 1010 568; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+6 resize set 1346 758; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+7 resize set 1794 1010; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+8 resize set 2392 1346; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+9 resize set 1920 1080; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+0 resize set 7680 4320; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+
+## Window size presets (4:3)
+#bindsym $mod+Ctrl+F1 resize set 400 300
+#bindsym $mod+Ctrl+F2 resize set 800 600
+#bindsym $mod+Ctrl+F3 resize set 1024 768
+#bindsym $mod+Ctrl+F4 resize set 1600 1200
+#
+## Custom ratios
+#bindsym $mod+Ctrl+F5 resize set 800 500
+#bindsym $mod+Ctrl+F6 resize set 720 1280
+#bindsym $mod+Ctrl+F7 resize set 1000 1000
+#bindsym $mod+Ctrl+F8 resize set 1200 800
+#
+# Quick size adjustments
+bindsym $mod+Ctrl+plus resize grow width 100 px; resize grow height 100 px; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym $mod+Ctrl+minus resize shrink width 100 px; resize shrink height 100 px; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+#bindsym $mod+Ctrl+0 resize set 712 576; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+
+# Corner snapping
+#
+#
+#
+#
+bindsym $mod+Ctrl+period exec --no-startup-id ~/i3-repo/scripts/i3/unmark-focused.sh
+# Movement
+bindsym Mod4+Left  move left 40px
+bindsym Mod4+Right move right 40px
+bindsym Mod4+Up    move up 40px
+bindsym Mod4+Down  move down 40px
+# Resizing
+bindsym mod4+a resize shrink width 34 px; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym mod4+d resize grow width 34 px; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym mod4+w resize shrink height 34 px; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym mod4+s resize grow height 34 px; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym mod4+u resize shrink height 15 px or 15 ppt; exec --no-startup-id ~/i3-repo/scripts/bin/float-record-size.sh
+bindsym mod4+r exec --no-startup-id ~/i3-repo/scripts/bin/stack-floats.sh
+bindsym mod4+y exec --no-startup-id ~/i3-repo/scripts/bin/deck-floats.sh
+bindsym mod4+t exec --no-startup-id ~/i3-repo/scripts/bin/i3floatarrage.sh
+bindsym mod4+o exec --no-startup-id ~/i3-repo/scripts/bin/spotlight-floats.sh
+bindsym mod4+p exec --no-startup-id ~/i3-repo/scripts/bin/ribbon-floats.sh
+bindsym mod4+Pause exec --no-startup-id ~/i3-repo/scripts/bin/float-layout-pause.sh
+bindsym mod4+shift+r exec --no-startup-id ~/i3-repo/scripts/bin/stack-floats.sh next
+bindsym mod4+shift+y exec --no-startup-id ~/i3-repo/scripts/bin/deck-floats.sh next
+bindsym mod4+shift+t exec --no-startup-id ~/i3-repo/scripts/bin/mosaic-floats.sh next
+bindsym mod4+Ctrl+g       exec --no-startup-id ~/i3-repo/scripts/bin/still-floats.sh
+bindsym mod4+Ctrl+shift+g exec --no-startup-id ~/i3-repo/scripts/bin/still-floats.sh next
+bindsym mod4+Ctrl+f       exec --no-startup-id ~/i3-repo/scripts/bin/still-floats.sh fill
+bindsym mod4+shift+o exec --no-startup-id ~/i3-repo/scripts/bin/spotlight-floats.sh next
+bindsym mod4+shift+p exec --no-startup-id ~/i3-repo/scripts/bin/ribbon-floats.sh next
+#bindsym mod4+c exec --no-startup-id ~/i3-repo/scripts/bin/carousel-floats.sh toggle
+
+
+
+# Floating window rules
+for_window [window_role="pop-up"] floating enable, focus
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_type="notification"] floating enable
+# Never focus notification windows (dunst) — fixes scratchpad windows
+# disappearing when a mark notification pops up during focus change
+no_focus [window_type="notification"]
+no_focus [class="Dunst"]
+for_window [class="Dunst"] floating enable, sticky enable, border none
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [title="mark-popup"] floating enable, border none, no_focus
+for_window [class="Lxappearance"] floating enable
+for_window [class="Qt5ct"] floating enable
+for_window [title="Picture-in-Picture"] floating enable, sticky enable
+#for_window [class="Brave-browser" window_role="pop-up"] floating disable
+#for_window [class="Brave-browser"] floating disable
+#for_window [class="sticky*"] move scratchpad
+
+# Floating windows get a titlebar
+for_window [floating] border normal 3
+#for_window [floating] exec --no-startup-id [ -f /tmp/float-active-layout ] && bash "$(cat /tmp/float-active-layout)"
+bindsym Mod4+shift+q exec --no-startup-id ~/i3-repo/scripts/bin/rofi-exec
+#@bindsym $mod+bracketright gaps outer right current  5
+#indsym $mod+bracketleft  gaps outer right current minus 5
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 💾 SCRATCHPAD
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym $mod+grave scratchpad show
+
+# Named scratchpads
+bindsym $mod+Shift+F2 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s2
+bindsym $mod+Shift+F3 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s3
+bindsym $mod+Shift+F4 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s4
+bindsym $mod+Shift+F5 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s5
+bindsym $mod+Shift+F6 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s6
+bindsym $mod+Shift+F7 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s7
+bindsym $mod+Shift+F8 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s8
+bindsym $mod+Shift+F9 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh s9
+
+bindsym $mod+F2 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s2
+bindsym $mod+F3 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s3
+bindsym $mod+F4 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s4
+bindsym $mod+F5 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s5
+bindsym $mod+F6 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s6
+bindsym $mod+F7 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s6
+bindsym $mod+F8 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s6
+bindsym $mod+F9 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh s6
+
+# Global groups
+#bindsym $mod+Mod4+Shift+1 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 1
+#bindsym $mod+Mod4+Shift+2 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 2
+#bindsym $mod+Mod4+Shift+3 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 3
+#bindsym $mod+Mod4+Shift+4 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 4
+#bindsym $mod+Mod4+Shift+5 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 5
+#bindsym $mod+Mod4+Shift+6 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 6
+#bindsym $mod+Mod4+Shift+7 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 7
+#bindsym $mod+Mod4+Shift+8 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 8
+#bindsym $mod+Mod4+Shift+9 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 9
+#
+#bindsym $mod+Mod4+1 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 1
+#bindsym $mod+Mod4+2 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 2
+#bindsym $mod+Mod4+3 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 3
+#bindsym $mod+Mod4+4 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 4
+#bindsym $mod+Mod4+5 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 5
+#bindsym $mod+Mod4+6 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 6
+#bindsym $mod+Mod4+7 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 7
+#bindsym $mod+Mod4+8 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 8
+#bindsym $mod+Mod4+9 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group-multi.sh 9
+#
+# Workspace-specific groups
+bindsym $mod+Mod4+Ctrl+Shift+1 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 1
+bindsym $mod+Mod4+Ctrl+Shift+2 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 2
+bindsym $mod+Mod4+Ctrl+Shift+3 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 3
+bindsym $mod+Mod4+Ctrl+Shift+4 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 4
+bindsym $mod+Mod4+Ctrl+Shift+5 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 5
+bindsym $mod+Mod4+Ctrl+Shift+6 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 6
+bindsym $mod+Mod4+Ctrl+Shift+7 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 7
+bindsym $mod+Mod4+Ctrl+Shift+8 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 8
+bindsym $mod+Mod4+Ctrl+Shift+9 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 9
+bindsym $mod+Mod4+Ctrl+Shift+0 exec --no-startup-id ~/i3-repo/scripts/i3/add-to-group.sh 0
+
+bindsym $mod+Mod4+Ctrl+1 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 1
+bindsym $mod+Mod4+Ctrl+2 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 2
+bindsym $mod+Mod4+Ctrl+3 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 3
+bindsym $mod+Mod4+Ctrl+4 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 4
+bindsym $mod+Mod4+Ctrl+5 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 5
+bindsym $mod+Mod4+Ctrl+6 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 6
+bindsym $mod+Mod4+Ctrl+7 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 7
+bindsym $mod+Mod4+Ctrl+8 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 8
+bindsym $mod+Mod4+Ctrl+9 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 9
+bindsym $mod+Mod4+Ctrl+0 exec --no-startup-id ~/i3-repo/scripts/i3/toggle-group.sh 0
+# Named scratch slots
+#bindsym Mod4+F1 [con_mark="scratch1"] scratchpad show
+#bindsym Mod4+F2 [con_mark="scratch2"] scratchpad show
+#bindsym Mod4+F3 [con_mark="scratch3"] scratchpad show
+#bindsym Mod4+F4 [con_mark="scratch4"] scratchpad show
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 📏 RESIZE MODE
+# ═══════════════════════════════════════════════════════════════════════════
+#
+#mode "resize" {
+#    bindsym h resize shrink width 10 px or 10 ppt
+#    bindsym j resize grow height 10 px or 10 ppt
+#    bindsym k resize shrink height 10 px or 10 ppt
+#    bindsym l resize grow width 10 px or 10 ppt
+#    bindsym Left  resize grow width 15 px or 15 ppt
+#    bindsym Down  resize grow height 15 px or 15 ppt
+#    bindsym Up    resize shrink height 15 px or 15 ppt
+#    bindsym Right resize shrink width 15 px or 15 ppt
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+#bindsym $mod+r mode "resize"
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# 🖱️ MOUSE CONTROL
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🔊 MEDIA CONTROLS
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 📸 SCREENSHOTS
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym Print       exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date +%s).png"
+bindsym $mod+Print  exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date +%s).png"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date +%s).png"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ⚡ APPLICATION LAUNCHERS
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym Scroll_Lock exec ~/i3-repo/scripts/bin/rofi-random.sh
+bindsym Pause       exec ~/i3-repo/scripts/bin/rofi-random-window.sh run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+#bindsym Mod4+f exec ~/i3-repo/scripts/bin/i3-grid-scratchpad.sh
+#bindsym Mod4+t          exec --no-startup-id guake
+#bindsym Mod4+z          exec --no-startup-id ~/i3-repo/scripts/bin/palette.sh
+#bindsym Mod4+x          exec --no-startup-id ~/i3-repo/scripts/bin/theme.sh
+bindsym Mod4+b          exec --no-startup-id ~/i3-repo/scripts/bin/toggle-polybar.sh
+bindsym Mod4+n       exec --no-startup-id mousepad "~/notes/main.txt"
+bindsym Mod4+shift+n exec --no-startup-id sh -c 'mousepad ~/notes/$(date +%Y-%m-%d).txt'
+bindsym Mod4+Ctrl+n  exec --no-startup-id ~/i3-repo/scripts/bin/ws-note.sh
+bindsym Mod4+slash   exec --no-startup-id ~/i3-repo/scripts/bin/window-history.sh
+bindsym Mod4+Ctrl+c  exec --no-startup-id ~/i3-repo/scripts/bin/clip-pick.sh
+#bindsym F13          mode "mark"
+# ~/.i3/config
+
+# ~/.i3/config
+# keynav on eDP1 (left/laptop, 1600x900 at 0,0) — centre point 800,450
+bindsym Mod4+x exec --no-startup-id ~/i3-repo/scripts/bin/keynav-monitor.sh 800 450
+# keynav on HDMI2 (right monitor, 1920x1080 at 1920,0) — centre point 2880,540
+bindsym Mod4+c exec --no-startup-id ~/i3-repo/scripts/bin/keynav-monitor.sh 2880 540
+# swap all workspaces between eDP1 and HDMI2
+bindsym Mod4+Shift+x exec --no-startup-id ~/i3-repo/scripts/bin/swap-monitors.sh
+bindsym Mod4+Shift+c exec --no-startup-id ~/i3-repo/scripts/bin/swap-monitors.sh
+# 🔄 SYSTEM MODE
+# ═══════════════════════════════════════════════════════════════════════════
+
+set $mode_system System: (l) lock | (e) logout | (s) suspend | (h) hibernate | (r) reboot | (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l       exec --no-startup-id i3exit lock,     mode "default"
+    bindsym e       exec --no-startup-id i3exit logout,   mode "default"
+    bindsym s       exec --no-startup-id i3exit suspend,  mode "default"
+    bindsym h       exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r       exec --no-startup-id i3exit reboot,   mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym Return  mode "default"
+    bindsym Escape  mode "default"
+}
+bindsym $mod+Escape mode "$mode_system"
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ⚙️ i3 MANAGEMENT
+# ═══════════════════════════════════════════════════════════════════════════
+
+#bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r exec --no-startup-id "i3-msg restart && dunstify -u low '♻️ i3 Restarted'"
+bindsym $mod+Shift+e exec "i3-nagbar -t custom52 -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 📊 STATUS BAR
+# ═══════════════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════════════════
+# 🚀 AUTOSTART
+# ═══════════════════════════════════════════════════════════════════════════
+
+hide_edge_borders both
+exec_always --no-startup-id ~/i3-repo/polybar/launch.sh
+
+exec --no-startup-id nm-applet
+exec --no-startup-id xkbset m
+exec_always --no-startup-id feh --bg-max "file://$HOME/Downloads/wall.jpg"
+exec --no-startup-id xinput disable "PS/2 Synaptics TouchPad"
+exec --no-startup-id xrdb -merge ~/.Xresources
+#exec --no-startup-id keynav
+exec --no-startup-id xbindkeys
+# exec --no-startup-id bash ~/Desktop/layout1.sh  # machine-specific, adapt as needed
+exec --no-startup-id slack --disable-gpu --no-sandbox --ozone-platform=x11
+exec --no-startup-id google-chrome-stable  --ozone-platform=x11
+
+exec_always --no-startup-id ~/i3-repo/scripts/i3/i3-focus-tracker.sh
+#exec_always --no-startup-id ~/i3-repo/scripts/i3/i3-title-format.sh
+exec_always --no-startup-id ~/i3-repo/scripts/bin/stale-window-marker.sh
+exec_always --no-startup-id ~/i3-repo/scripts/bin/auto-mark-new-windows.sh
+# show focused window's mark (Alt+backslash) — manual trigger
+bindsym $mod+backslash exec --no-startup-id ~/i3-repo/scripts/i3/show-focused-mark.sh
+bindsym $mod+Shift+backslash exec --no-startup-id pkill -f osd_cat
+# auto-show mark popup on focus change
+exec_always --no-startup-id ~/i3-repo/scripts/i3/focus-mark-watcher.sh
+exec_always --no-startup-id ~/i3-repo/scripts/bin/float-zone-enforcer.sh
+exec_always --no-startup-id python3 ~/i3-repo/scripts/bin/float-layout-watcher.py
+exec_always --no-startup-id ~/i3-repo/scripts/bin/float-size-tracker.sh
+exec --no-startup-id ~/i3-repo/scripts/bin/xcape-mark.sh
+exec --no-startup-id ~/i3-repo/scripts/bin/clip-daemon.sh
+exec --no-startup-id brave-browser-stable
+exec_always --no-startup-id dunst \
+    -corner_radius 12 \
+    -frame_width 2 \
+    -frame_color "#D4AF37" \
+    -font "Inter 10" \
+    -icon_position left \
+    -max_icon_size 48 \
+    -padding 16 \
+    -horizontal_padding 16
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🔁 FOCUS CYCLE
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym Mod4+period exec --no-startup-id ~/i3-repo/scripts/i3/i3-focus-cycle.sh forward
+bindsym Mod4+comma  exec --no-startup-id ~/i3-repo/scripts/i3/i3-focus-cycle.sh back
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🪟 WINDOW RULES
+# ═══════════════════════════════════════════════════════════════════════════
+
+#for_window [class="Mousepad"] floating enable, resize set 900 700, move position center
+
+# Stale window — loud border to demand action
+#for_window [con_mark="stale_loud"] border pixel 4
+
+#bindsym $mod+comma exec xdotool mousemove 960 1620
+bindsym $mod+n exec xdotool click --repeat 2 --delay 4 4
+bindsym $mod+m exec xdotool click --repeat 2 --delay 4 5
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🔆 BRIGHTNESS — xrandr software control
+# ═══════════════════════════════════════════════════════════════════════════
+
+bindsym Mod4+equal exec ~/i3-repo/scripts/i3/brightness-xrandr.sh up
+bindsym Mod4+minus exec ~/i3-repo/scripts/i3/brightness-xrandr.sh down
+bindsym Mod4+shift+equal exec ~/i3-repo/scripts/i3/brightness-xrandr2.sh up
+bindsym Mod4+shift+minus exec ~/i3-repo/scripts/i3/brightness-xrandr2.sh down
+
+bindsym Mod4+F5 exec xrandr --output eDP1 --brightness 0.3
+bindsym Mod4+F6 exec xrandr --output eDP1 --brightness 0.5
+bindsym Mod4+F7 exec xrandr --output eDP1 --brightness 0.8
+bindsym Mod4+F8 exec xrandr --output eDP1 --brightness 1.0
+
+#bindsym Mod4+c exec ~/i3-repo/scripts/bin/cursor-remove.sh
+
+bindsym Mod4+shift+f exec ~/i3-repo/scripts/bin/fullfull.sh
+#bindsym Mod4+shift+Tab exec ~/i3-repo/scripts/bin/float-zone-cycle.sh
+bindsym Mod4+e exec --no-startup-id ~/i3-repo/scripts/bin/toggle-edp1.sh
+bindsym Mod4+shift+e exec --no-startup-id ~/i3-repo/scripts/bin/toggle-hdmi2.sh
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 4.24 NEW FEATURES
+# ═══════════════════════════════════════════════════════════════════════════
+
+tiling_drag modifier
+focus_wrapping workspace
+#bindsym $mod+Shift+g move position mouse
+
+
+bindsym $mod+shift+bracketright exec ~/i3-repo/scripts/i3/gap-right.sh increase
+bindsym $mod+shift+bracketleft exec ~/i3-repo/scripts/i3/gap-right.sh decrease
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exec --no-startup-id xrdb ~/.Xresources
+#exec --no-startup-id keynav
+exec_always --no-startup-id xrdb -merge ~/.Xresources
+exec_always --no-startup-id xsetroot -cursor_name left_ptr
+
+#exec --no-startup-id ~/i3-repo/scripts/bin/keynav-watchdog.sh
+set $mode_launch Launch
+mode "$mode_launch" {
+    bindsym b  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'b' 'brave' '🦁 Brave'" ; mode "default"
+    bindsym shift+b  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'b' 'brave --incognito' '🦁 Brave incognito'" ; mode "default"
+    bindsym f  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'f' 'firefox' '🦊 Firefox'" ; mode "default"
+    bindsym shift+f  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'f' 'firefox  --incognito' '🦊 Firefox🦁  incognito'" ; mode "default"
+    bindsym c  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'c' 'code --ozone-platform=x11' '💻 VS Code'" ; mode "default"
+    bindsym shift+c  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'c' 'code --new-window --ozone-platform=x11' '💻 VS Code'" ; mode "default"
+    bindsym d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://claude.ai' '🤖 Claude'" ; mode "default"
+    bindsym ctrl+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://chatgpt.com' '🤖 ChatGPT'" ; mode "default"
+    bindsym ctrl+c  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://calendar.google.com' '🤖 Calendar'" ; mode "default"
+    bindsym shift+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://gemini.google.com' '🤖 Gemini'" ; mode "default"
+    bindsym ctrl+shift+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://venice.ai' '🤖 Venice'" ; mode "default"
+    bindsym mod1+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://you.com' '🤖 You.com'" ; mode "default"
+    bindsym mod1+ctrl+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://huggingface.co/chat' '🤖 HuggingChat'" ; mode "default"
+    bindsym mod1+shift+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://kagi.com/assistant' '🤖 Kagi Assistant'" ; mode "default"
+    bindsym mod4+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://phind.com' '🤖 Phind'" ; mode "default"
+    bindsym ctrl+shift+a  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'a' 'antigravity' '🤖 editor google'" ; mode "default"
+    bindsym mod4+ctrl+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://pi.ai' '🤖 Pi'" ; mode "default"
+    bindsym mod4+shift+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://mistral.ai/chat' '🤖 Le Chat'" ; mode "default"
+    bindsym mod1+mod4+d  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'd' 'brave --app=https://deepseek.com' '🤖 DeepSeek'" ; mode "default"
+    bindsym z  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'z' 'zoom' '📹 Zoom'" ; mode "default"
+    bindsym o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'opera ' '🅾️ Opera '" ; mode "default"
+    bindsym shift+o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'opera --private' '🅾️ Opera private'" ; mode "default"
+    bindsym g  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'g' 'brave-browser --profile-directory=Default --new-window https://mail.google.com' '📧 Gmail personal'" ; mode "default"
+    bindsym shift+g  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'g' 'brave-browser --profile-directory='Profile 3' --new-window https://mail.google.com' '📧 Gmail acct3'" ; mode "default"
+    bindsym Mod4+g  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'g' 'firefox --new-window https://mail.google.com' '📧 Gmail (Firefox)'" ; mode "default"
+    bindsym shift+a  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'a' 'brave --app=https://console.aws.amazon.com' '☁️ AWS Console'" ; mode "default"
+    bindsym a  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'a' 'firefox --new-window https://console.aws.amazon.com' '☁️ AWS Console (FF)'" ; mode "default"
+    bindsym s  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 's' 'slack' '💬 Slack'" ; mode "default"
+    bindsym j  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'j' 'brave-browser --app=https://your-jira-address' '📋 Jira'" ; mode "default"
+    bindsym shift+j  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'j' 'firefox --new-window https://github.com/yourjiraaddress' '🐙 GitHub'" ; mode "default"
+    bindsym ctrl+j  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'j' 'firefox --new-window https://godaddy.com' '🌐 GoDaddy'" ; mode "default"
+    bindsym n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'flatpak run com.vixalien.sticky ' ' sticky'" ; mode "default"
+    bindsym m  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'm' 'nemo' '📂 Home'" ; mode "default"
+    bindsym shift+m  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'm' 'nemo ~/Downloads' '📂 Downloads'" ; mode "default"
+    bindsym ctrl+m  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'm' 'nemo ~/Pictures/Screenshots' '📂 Screenshots'" ; mode "default"
+    bindsym $mod+m  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'm' 'nemo /' '📂 Root'" ; mode "default"
+    bindsym t  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 't' 'tilix' '🖥️ Tilix'" ; mode "default"
+    bindsym ctrl+t  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 't' 'brave --app=https://excalidraw.com' 'tldraw'" ; mode "default"
+    bindsym shift+t  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 't' 'bash Downloads/TrilliumNotes-v0.103.0-linux-x64.AppImage --ozone-platform=x11' '🖥️ UXTerm'" ; mode "default"
+    bindsym $mod+t  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 't' 'org.gnome.Terminal' '🖥️ GNOME Terminal'" ; mode "default"
+    bindsym n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'flatpak run com.vixalien.sticky' '📝 Sticky Notes'" ; mode "default"
+    bindsym ctrl+n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'trilium --ozone-platform=x11' '📝 Trilium'" ; mode "default"
+    bindsym Ctrl+Shift+n exec --no-startup-id ~/i3-repo/scripts/i3/launch-and-mark.sh n "bash -lc '$HOME/bin/wekan/start-wekan.sh && firefox http://localhost:8080'" "📝 wekan"; mode "default"
+    bindsym shift+n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'org.gnome.Gnote' '📝 Gnote'" ; mode "default"
+    bindsym Mod4+n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'zettlr' '📝 Zettlr'" ; mode "default"
+    bindsym $mod+n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'xmind' '🧠 XMind'" ; mode "default"
+    bindsym $mod+Mod4+n  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'n' 'gnumeric' '📊 Gnumeric'" ; mode "default"
+    bindsym w  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'w' 'firefox --new-window https://web.whatsapp.com' '💬 WhatsApp'" ; mode "default"
+    bindsym shift+s  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 's' 'telegramdesktop' '✈️ Telegram'" ; mode "default"
+    bindsym l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'brave --app=https://www.youtube.com' '📺 YouTube'" ; mode "default"
+    bindsym ctrl+l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'brave --app=https://www.chess.com' '♟️ Chess.com'" ; mode "default"
+    bindsym shift+l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'pychess' '♟️ PyChess'" ; mode "default"
+    bindsym Mod4+l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'brave --app=https://pinterest.com' '📌 Pinterest'" ; mode "default"
+    bindsym $mod+l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'brave--app=https://pixilart.com' '🎨 Pixilart'" ; mode "default"
+    bindsym ctrl+shift+l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'supertuxkart' '🏎️ SuperTuxKart'" ; mode "default"
+    bindsym Mod4+l  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'l' 'brave-browser --new-window https://www.linkedin.com/in/a12' '💼 LinkedIn'" ; mode "default"
+    bindsym v  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'v' 'VBoxManage snapshot fgdfffff restore ready-state && VBoxManage startvm fgdfffff --type separate' '🪟 Windows VM'" ; mode "default"
+    bindsym $mod+v  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'v' 'obs' '🎥 OBS Studio'" ; mode "default"
+    bindsym ctrl+kv  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'v' 'VBoxManage snapshot fgdfffff restore ready-state && VBoxManage startvm pop-os --type separate' '🪟 Pop-up'" ; mode "default"
+    bindsym shift+v  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'v' 'shutter' '📸 Shutter'" ; mode "default"
+    bindsym o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'libreoffice --writer' '📄 LibreOffice Writer'" ; mode "default"
+    bindsym shift+o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'libreoffice --calc' '📊 LibreOffice Calc'" ; mode "default"
+    bindsym ctrl+o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'libreoffice --impress' '📽️ LibreOffice Impress'" ; mode "default"
+    bindsym Mod4+o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'gimp' '🖌️ GIMP'" ; mode "default"
+    bindsym $mod+o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'com.github.maoschanz.drawing' '✏️ Drawing'" ; mode "default"
+    bindsym ctrl+shift+o  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'o' 'kdenlive' '🎬 Kdenlive'" ; mode "default"
+
+    # ---------------- SYSTEM / UTILITY (u radial) ----------------
+    bindsym u  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'u' 'gnome-system-monitor' '📊 System Monitor'" ; mode "default"
+    bindsym ctrl+u  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'u' 'htop' '📊 htop'" ; mode "default"
+    bindsym shift+u  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'u' 'pavucontrol' '🔊 Volume Control'" ; mode "default"
+    bindsym ctrl+shift+u  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'u' 'nm-connection-editor' '📶 Network Editor'" ; mode "default"
+    bindsym $mod+u  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'u' 'gufw' '🛡️ Firewall (GUFW)'" ; mode "default"
+    bindsym Mod4+u  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'u' 'synaptic' '📦 Synaptic'" ; mode "default"
+
+    # ---------------- CLOCK / TIME (c radial) ----------------
+    bindsym c  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'c' 'gnome-clocks' '⏰ Clocks'" ; mode "default"
+    bindsym shift+c  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'c' 'stopwatch' '⏱️ Stopwatch'" ; mode "default"
+    bindsym $mod+c  exec --no-startup-id "~/i3-repo/scripts/i3/launch-and-mark.sh 'c' 'gnome-calculator' '🧮 Calculator'" ; mode "default"
+
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym Mod4+F1 mode "$mode_launch"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bindsym Mod4+f exec --no-startup-id ~/i3-repo/scripts/bin/i3-marks-rofi.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+set $stale         #ff6500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bindsym Mod4+space exec --no-startup-id ~/i3-repo/scripts/bin/rofi-exec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#client.focused          $accent       $bg-medium     $text-primary   $accent-dim   $accent
+#client.focused_inactive $bg-light     $bg-darker     $text-secondary $text-muted   $bg-light
+#client.unfocused        $bg-darker    $bg-darker     $text-muted     $bg-darker    $bg-darker
+#client.urgent           $urgent       $urgent        $text-primary   $urgent       $urgent
+#client.placeholder      $bg-darker    $bg-medium     $text-muted     $bg-darker    $bg-darker
+#client.background       $bg-medium
+
+
+
+
+
+
+for_window [class="Brave-browser" window_type="normal"] floating disable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ═══════════════════════════════════════════════════════════════════
+# 🚀 ROCKET MODE - Window Group Management 
+# ═══════════════════════════════════════════════════════════════════
+#
+# WORKFLOW:
+# 1. Quick slots (Mod4+bracketleft/right) - Save/switch 3 instant groups
+# 2. Toggle (Mod4+z) - Jump between last 2 active groups  
+# 3. Cycle (Mod4+Ctrl+z / Shift+Ctrl+z) - Navigate within active group
+# 4. Menu (Mod4+Shift+z) - Full management for named permanent groups
+#
+# ═══════════════════════════════════════════════════════════════════
+
+# TIER 1: Quick Slots (fastest - instant focus toggle/switch)
+bindsym Mod4+1 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 1
+bindsym Mod4+2 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 2
+bindsym Mod4+3 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 3
+bindsym Mod4+4 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 4
+bindsym Mod4+5 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 5
+bindsym Mod4+6 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 6
+bindsym Mod4+7 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 7
+bindsym Mod4+8 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 8
+bindsym Mod4+9 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 9
+bindsym Mod4+0 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 10
+bindsym Mod4+Ctrl+1 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 11
+bindsym Mod4+Ctrl+2 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 12
+bindsym Mod4+Ctrl+3 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 13
+bindsym Mod4+Ctrl+4 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 14
+bindsym Mod4+Ctrl+5 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 15
+bindsym Mod4+Ctrl+6 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 16
+bindsym Mod4+Ctrl+7 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 17
+bindsym Mod4+Ctrl+8 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 18
+bindsym Mod4+Ctrl+9 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 19
+bindsym Mod4+Ctrl+0 exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 20
+bindsym Mod4+Ctrl+minus exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 21
+bindsym Mod4+Ctrl+equal exec --no-startup-id ~/i3-repo/scripts/i3/group-switch.sh 22
+
+
+bindsym Mod4+Shift+1 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 1
+bindsym Mod4+Shift+2 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 2
+bindsym Mod4+Shift+3 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 3
+bindsym Mod4+Shift+4 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 4
+bindsym Mod4+Shift+5 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 5
+bindsym Mod4+Shift+6 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 6
+bindsym Mod4+Shift+7 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 7
+bindsym Mod4+Shift+8 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 8
+bindsym Mod4+Shift+9 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 9
+bindsym Mod4+Shift+0 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 10
+bindsym Mod4+Ctrl+Shift+1 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 11
+bindsym Mod4+Ctrl+Shift+2 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 12
+bindsym Mod4+Ctrl+Shift+3 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 13
+bindsym Mod4+Ctrl+Shift+4 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 14
+bindsym Mod4+Ctrl+Shift+5 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 15
+bindsym Mod4+Ctrl+Shift+6 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 16
+bindsym Mod4+Ctrl+Shift+7 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 17
+bindsym Mod4+Ctrl+Shift+8 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 18
+bindsym Mod4+Ctrl+Shift+9 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 19
+bindsym Mod4+Ctrl+Shift+0 exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 20
+bindsym Mod4+Ctrl+Shift+minus exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 21
+bindsym Mod4+Ctrl+Shift+equal exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle-window.sh 22
+
+
+# TIER 2: Toggle & Cycle (daily drivers)
+bindsym Mod4+z                  exec --no-startup-id ~/i3-repo/scripts/i3/group-toggle.sh
+bindsym Mod4+bracketleft             exec --no-startup-id ~/i3-repo/scripts/i3/group-next.sh
+bindsym Mod4+bracketright       exec --no-startup-id ~/i3-repo/scripts/i3/group-prev.sh
+
+# TIER 3: Full Menu (setup & management)
+bindsym Mod4+Print            exec --no-startup-id ~/i3-repo/scripts/i3/group-menu.sh
+
+# ═══════════════════════════════════════════════════════════════════
+# USAGE PATTERNS:
+#
+# Quick context switch:
+#   - Mark windows → Mod4+[ → switches to slot 1 (or saves if new)
+#   - Mark more → Mod4+] → switches to slot 2
+#   - Mod4+z → toggle between slot 1 & 2
+#
+# Navigate active group:
+#   - Mod4+Ctrl+z → next window
+#   - Mod4+Shift+Ctrl+z → prev window  
+#
+# Permanent named groups:
+#   - Mod4+Shift+z → Create/Edit/Delete named groups
+#   - Named groups persist, quick slots are temporary
+#
+# ═══════════════════════════════════════════════════════════════════
+
+
+
+
+
+
+
+
