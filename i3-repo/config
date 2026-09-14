@@ -4,7 +4,7 @@
 
 set $mod Mod1
 bindsym F4 kill
-font pango:choco cooky 12
+font pango:Choco Cooky 12
 #font losevka Font 20
 
 # Color variables (defined early for use throughout config)

@@ -1,0 +1,355 @@
+clear
+daemonize
+Escape end
+alt+z start,grid 4x4,cut-up,warp
+alt+b start,grid 4x4,cut-down,warp
+alt+space start,grid 1980x1080,grid 1x1,warp
+F2 start,cursorzoom 26 36,grid 1x1,warp
+ctrl+F1 start,grid 4x4,cut-left,cut-up,warp
+ctrl+F2 start,grid 1x1,cut-left,cut-up,warp
+ctrl+F3 start,grid 4x4,cut-up,cut-left,cut-right,warp
+ctrl+F4 start,grid 4x4,cut-up,cut-left,cut-up,warp
+ctrl+F5 start,grid 4x4,cut-up,cut-left,cut-down,warp
+ctrl+F6 start,grid 4x4,cut-up,cut-left,cut-left,cut-up,warp
+ctrl+F7 start,grid 4x4,cut-up,cut-left,cut-right,cut-up,warp
+ctrl+F8 start,grid 4x4,cut-up,cut-left,cut-down,cut-left,warp
+ctrl+F9 start,grid 4x4,cut-up,cut-left,cut-down,cut-right,w4x4
+
+shift+F1 start,grid 1x1,cut-right,cut-up,click 5,warp
+shift+F2 start,grid 4x4,cut-right,cut-up,click 5,warp
+shift+F3 start,grid 4x4,cut-up,cut-right,cut-right,warp
+shift+F4 start,grid 4x4,cut-up,cut-right,cut-up,warp
+shift+F5 start,grid 4x4,cut-up,cut-right,cut-down,warp
+shift+F6 start,grid 4x4,cut-up,cut-right,cut-left,cut-up,warp
+shift+F7 start,grid 4x4,cut-up,cut-right,cut-right,cut-up,warp
+shift+F8 start,grid 4x4,cut-up,cut-right,cut-down,cut-left,warp
+shift+F9 start,grid 4x4,cut-up,cut-right,cut-down,cut-right,warp
+
+ctrl+alt+shift+F1 start,grid 4x4,cut-right,cut-right,cut-down,click 5
+ctrl+alt+shift+F2 start,grid 4x4,cut-right,cut-right,cut-down,click 4
+alt+ctrl+shift+F3 start,grid 4x4,cut-down,cut-right,cut-right,warp
+alt+ctrl+shift+F4 start,grid 4x4,cut-down,cut-right,cut-up,warp
+alt+ctrl+shift+F5 start,grid 4x4,cut-down,cut-right,cut-down,warp
+alt+ctrl+shift+F6 start,grid 4x4,cut-down,cut-right,cut-left,cut-up,warp
+alt+ctrl+shift+F7 start,grid 4x4,cut-down,cut-right,cut-right,cut-up,warp
+alt+ctrl+shift+F8 start,grid 4x4,cut-down,cut-right,cut-down,cut-left,warp
+alt+ctrl+shift+F9 start,grid 4x4,cut-down,cut-right,cut-down,cut-right,warp
+ctrl+shift+F1 start,grid 4x4,cut-left,cut-down,click 5,warp
+ctrl+shift+F2 start,grid 4x4,cut-left,cut-down,click 4,warp
+ctrl+shift+F3 start,grid 4x4,cut-down,cut-left,cut-right,warp
+ctrl+shift+F4 start,grid 4x4,cut-down,cut-left,cut-up,warp
+ctrl+shift+F5 start,grid 4x4,cut-down,cut-left,cut-down,warp
+ctrl+shift+F6 start,grid 4x4,cut-down,cut-left,cut-left,cut-up,warp
+ctrl+shift+F7 start,grid 4x4,cut-down,cut-left,cut-right,cut-up,warp
+ctrl+shift+F8 start,grid 4x4,cut-down,cut-left,cut-down,cut-left,warp
+ctrl+shift+F9 start,grid 4x4,cut-down,cut-left,cut-down,cut-right,warp
+
+#midgame
+#=== Rescue grids — shifted toward the four outer edges ===
+# Expanded Ctrl+F9
+ctrl+F10 start,grid 3x3,cut-left 0.60,cut-down 0.80,cut-right 0.75,cut-up 0.60,warp
+# Expanded Shift+F8
+ctrl+F11 start,grid 3x3,cut-right 0.60,cut-down 0.80,cut-left 0.75,cut-up 0.60,warp
+# Expanded Alt+Ctrl+F7# Expanded Bottom-left
+ctrl+F12 start,grid 3x3,cut-down 0.70,warp
+# Expanded Bottom-right
+ctrl+Insert start,grid 3x3,cut-right 0.60,cut-down 0.80,cut-left 0.75,cut-up 0.60,warp
+
+
+shift+Return warp,ctrl+click 1,warp
+shift+i move-up,warp
+shift+j move-left,warp
+shift+k move-down,warp
+shift+l move-right,warp
+shift+u move-left,move-up,warp
+shift+p move-right,move-up,warp
+shift+n move-left,move-down,warp
+shift+m move-right,move-down,warp
+shift+backslash move-up,move-down,warp
+ctrl+Tab end
+ctrl+shift+Tab key ctrl+shift+Tab,end
+ctrl+Return warp,key ctrl,click 1,warp
+#F3 start,grid 1x1,cut-left,warp
+shift+F3 start,grid 1x1,cut-right,warp
+ctrl+i cut-up 0.76,warp
+ctrl+j cut-left 0.76,warp
+ctrl+l cut-right 0.76,warp
+ctrl+k cut-down 0.76,warp
+ctrl+u cut-left,cut-up 0.76,warp
+ctrl+p cut-right,cut-up 0.76,warp
+ctrl+n cut-left,cut-down 0.76,warp
+ctrl+m cut-right,cut-down 0.76,warp
+
+alt+k cut-down 0.2,warp
+alt+j cut-left 0.2,warp
+alt+l cut-right 0.2,warp
+alt+u cut-left,cut-up 0.2,warp
+alt+p cut-right,cut-up 0.2,warp
+alt+n cut-left,cut-down 0.2,warp
+alt+m cut-right,cut-down 0.2,warp
+#
+ctrl+space cut-right, click 5,warp
+ctrl+shift+i cut-up 0.1,warp
+ctrl+shift+k cut-down 0.1,warp
+ctrl+shift+j cut-left 0.1,warp
+ctrl+shift+l cut-right 0.1,warp
+ctrl+shift+u cut-left,cut-up 0.1,warp
+ctrl+shift+p cut-right,cut-up 0.1,warp
+ctrl+shift+n cut-left,cut-down 0.1,warp
+ctrl+shift+m cut-right,cut-down 0.1,warp
+##Ctrl+Alt (much much more - 90%)
+ctrl+alt+i cut-up 0.9,warp
+ctrl+alt+k cut-down 0.9,warp
+ctrl+alt+j cut-left 0.9,warp
+ctrl+alt+l cut-right 0.9,warp
+ctrl+alt+u cut-left,cut-up 0.9,warp
+ctrl+alt+p cut-right,cut-up 0.9,warp
+ctrl+alt+n cut-left,cut-down 0.9,warp
+ctrl+alt+m cut-right,cut-down 0.9,warp
+#alphabets
+i cut-up,grid 1x1,warp
+j cut-left,grid 1x1,warp
+k cut-down,grid 1x1,warp
+l cut-right,grid 1x1,warp
+u cut-left,cut-up,grid 1x1,warp
+p cut-right,cut-up,grid 1x1,warp
+n cut-left,cut-down,grid 1x1,warp
+m cut-right,cut-down,grid 1x1,warp
+h cut-right 0.99,cut-up 0.99,cut-right 0.99,cut-down 0.99,warp
+g cut-left 0.99,cut-up 0.99,cut-left 0.99,cut-down 0.99,warp
+r cut-up 0.99,cut-left 0.99,cut-right 0.99,cut-up 0.99,warp
+o cut-down 0.99,cut-left 0.99,cut-right 0.99,cut-down 0.99,warp
+
+# First constrain to middle 80%, then cut to quadrant
+shift+h cut-left 0.90,cut-right 0.889,cut-up 0.90,cut-down 0.889,warp
+ctrl+h cut-left 0.80,cut-right 0.750,cut-up 0.80,cut-down 0.750,warp
+ctrl+shift+h cut-left 0.70,cut-right 0.571,cut-up 0.70,cut-down 0.571,warp
+#o sh "~/bin/keynav-frustration.sh",start
+Up sh "xdotool click --repeat 3 --delay 15 4"
+Down sh "xdotool click --repeat 3 --delay 15 5"
+Right click 7
+Left click 6
+ctrl+s click 4,click 4,click 4
+ctrl+d click 5,click 5,click 5,click 5
+alt+s click 4,click 4,click 4,click 4,click 4,,click 4,click 4,click 4
+alt+d click 5,click 5,click 5,click 5,click 5,click 5,click 5,click 5,click 5
+s click 4
+d click 5
+a click 6
+f click 7,click 7
+#ctrl+a click 6,click 6,click 4,click 4
+#ctrl+s click 5,click 5,click 7,click 7
+q sh "~/bin/keynav-scroll.sh 4 260 80"
+e sh "~/bin/keynav-scroll.sh 5 260 80"
+w sh "~/bin/keynav-scroll-stop.sh"
+shift+q sh "~/bin/keynav-scroll.sh 4 500 10"
+shift+e sh "~/bin/keynav-scroll.sh 5 500 10"
+
+#f click 7,click 7
+#g warp,click 1
+c sh "~/bin/cursor-mark.sh",end
+v sh "~/bin/cursor-jump.sh",end
+# Window Manipulation
+Delete sh "xdotool getmouselocation --shell | grep WINDOW | cut -d= -f2 | xargs xdotool windowclose",end
+End sh "xdotool getmouselocation --shell | grep WINDOW | cut -d= -f2 | xargs xdotool windowminimize",end
+
+Return warp,click 1,warp
+t warp,click 1,end
+b history-back
+#Pause start, grid 0.5 1x1, warp
+BackSpace warp,click 3,end
+# Middle Click
+x warp,click 2,end
+ctrl+c sh "xdotool key ctrl+c"
+shift+x warp,click 2,warp
+Tab key Tab,warp
+shift+Tab key shift+Tab,end
+ctrl+Tab key ctrl+Tab,end
+ctrl+shift+Tab key ctrl+shift+Tab,end
+XF86AudioRaiseVolume key XF86AudioRaiseVolume,end
+XF86AudioLowerVolume key XF86AudioLowerVolume,end
+XF86AudioMute key XF86AudioMute,end
+space warp,click 1,end
+semicolon warp,drag 1
+apostrophe drag 0,end
+minus cut-left 0.85,cut-up 0.85,cut-right 0.85,cut-down 0.85,warp
+equal cut-left 0.7,cut-up 0.7,cut-right 0.7,cut-down 0.7,warp
+shift+minus cut-left 0.55,cut-up 0.55,cut-right 0.55,cut-down 0.55,warp
+shift+equal cut-left 0.4,cut-up 0.4,cut-right 0.4,cut-down 0.4,warp
+ctrl+v cmd "xdotool key ctrl+v"
+period warp,end
+z sh "~/bin/keynav-magnet.sh",warp
+Shift+1 cell-select 1,warp
+Shift+2 cell-select 4,warp
+Shift+3 cell-select 7,warp
+Shift+4 cell-select 2,warp
+Shift+5 cell-select 5,warp
+Shift+6 cell-select 8,warp
+Shift+7 cell-select 3,warp
+Shift+8 cell-select 6,warp
+Shift+9 cell-select 9,warp
+#Shift+0 cell-select 1,warp
+Ctrl+1 cell-select 1,warp
+Ctrl+2 cell-select 5,warp
+Ctrl+3 cell-select 9,warp
+Ctrl+4 cell-select 13,warp
+Ctrl+5 cell-select 2,warp
+Ctrl+6 cell-select 6,warp
+Ctrl+7 cell-select 10,warp
+Ctrl+8 cell-select 14,warp
+Ctrl+9 cell-select 3,warp
+Ctrl+0 cell-select 7,warp
+Ctrl+minus cell-select 11 , warp
+Ctrl+equal cell-select 15,warp
+Ctrl+BackSpace cell-select 4,warp
+Ctrl+Insert cell-select 8,warp
+Ctrl+Home cell-select 12,warp
+Shift+0 cell-select 16,warp
+alt+1 warp,click 1,end
+alt+2 warp,click 1,click 1,warp
+alt+3 warp,click 1,click 1,click 1, warp
+alt+4 warp,click 1,click 1,click 1,click 1,click 1,warp
+alt+5 warp,click 1,click 1,click 1,click 1,click 1,click 1,warp
+alt+6 warp,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,click 1,warp
+Prior sh "~/bin/keynav-scroll.sh 4 52 80"
+Next sh "~/bin/keynav-scroll.sh 5 52 80"
+ctrl+shift+a warp,click 1,key ctrl+a
+
+# --- NEW: Absolute Pixel Nudges (Breaking keynav's proportional cuts) ---
+# Keynav's cuts shrink the box relative to its current size (Zeno's paradox),
+# making it extremely inefficient for closing a tiny 15px gap. 
+# We break out of this by using fixed-pixel hardware mouse movements via xdotool.
+
+# Macro Nudges (15 pixels) - Jump close to boundaries
+alt+Up sh "xdotool mousemove_relative -- 0 -15"
+alt+Down sh "xdotool mousemove_relative -- 0 15"
+alt+Left sh "xdotool mousemove_relative -- -15 0"
+alt+Right sh "xdotool mousemove_relative -- 15 0"
+
+# Medium Nudges (5 pixels) - Final inching
+shift+Up sh "xdotool mousemove_relative -- 0 -5"
+shift+Down sh "xdotool mousemove_relative -- 0 5"
+shift+Left sh "xdotool mousemove_relative -- -5 0"
+shift+Right sh "xdotool mousemove_relative -- 5 0"
+
+# Micro Nudges (1 pixel) - Pixel-perfect target acquisition
+ctrl+Up sh "xdotool mousemove_relative -- 0 -1"
+ctrl+Down sh "xdotool mousemove_relative -- 0 1"
+ctrl+Left sh "xdotool mousemove_relative -- -1 0"
+ctrl+Right sh "xdotool mousemove_relative -- 1 0"
+
+# --- Snap to Clickable Element (computer vision) ---
+comma sh "~/bin/keynav-snap.sh",warp
+
+# ═══════════════════════════════════════════════════════════════════════
+# MACROS (record / playback)
+# ═══════════════════════════════════════════════════════════════════════
+# Your 'clear' at the top wiped keynav's built-in record/playback defaults.
+# These bindings restore them.
+#
+# IMPORTANT: i3's $mod is Mod1 (Alt), so plain alt+X keys are TAKEN by i3.
+# All added hotkeys therefore use alt+ctrl(+shift) — verified free via
+# XGrabKey probing.
+#
+#   RECORD a macro:   alt+ctrl+r → press a free key (e.g. alt+z) → do stuff
+#                     → alt+ctrl+r again to stop
+#   PLAYBACK a macro: alt+ctrl+p → press the key you recorded to (e.g. alt+z)
+#
+# Recorded macros are saved to ~/.keynav_macros so they survive restarts.
+# NOTE: record/playback only works while keynav is in interactive mode
+#       (after pressing any key bound to 'start', e.g. ctrl+F1).
+#
+y record ~/.keynav_macros
+0 playback
+
+# ═══════════════════════════════════════════════════════════════════════
+# QUICK SPOTS — jump to 2–3 known screen coordinates instantly
+# ═══════════════════════════════════════════════════════════════════════
+# These are global hotkeys (they include 'start' so they work from anywhere).
+#
+# TO SET UP YOUR COORDINATES:
+#   1. Position your cursor over the target element (e.g. the Download button
+#      on WhatsApp Web, the Next-arrow, the file-browser delete area, etc.)
+#   2. Run in a terminal:  xdotool getmouselocation
+#   3. Edit the X Y values below to match.
+#   Or: press ctrl+F1 to enter keynav, navigate to the spot, press alt+ctrl+d
+#   and the coordinates will pop up as a notification.
+#
+# The example coordinates below assume a 1920×1080 display.
+
+# Spot 1 — typical browser action button (upper area)
+alt+ctrl+shift+1 start,sh "xdotool mousemove 1500 300",end
+# Spot 2 — secondary button (e.g. "next" arrow, slightly to the right)
+alt+ctrl+shift+2 start,sh "xdotool mousemove 1620 300",end
+# Spot 3 — lower area (e.g. file browser, bottom toolbar)
+alt+ctrl+shift+3 start,sh "xdotool mousemove 960 800",end
+
+# Jump to spot AND click — for when you know the exact spot you want
+# (no need to enter keynav mode first)
+alt+ctrl+shift+4 start,sh "xdotool mousemove 1500 300 click 1",end
+alt+ctrl+shift+5 start,sh "xdotool mousemove 1620 300 click 1",end
+alt+ctrl+shift+6 start,sh "xdotool mousemove 960 800 click 1",end
+
+# ═══════════════════════════════════════════════════════════════════════
+# CTRL+CLICK
+# ═══════════════════════════════════════════════════════════════════════
+# keynav's 'click' command has no modifier support, and 'xdotool click
+# ctrl+1' fails on xdotool 3.x. This script uses Python-Xlib + XTEST to
+# genuinely hold Ctrl, click, and release.
+#
+# Usage:  keynav-ctrlclick.sh [X Y] [button]
+#   with no args → ctrl+click at current cursor position
+#   with X Y    → move to coords, then ctrl+click
+#   third arg   → button number (1=left default, 2=middle, 3=right)
+#
+# Bindings below include 'start' so they work globally (single keypress
+# from anywhere, without entering keynav mode first).
+alt+ctrl+v start,sh "~/bin/keynav-ctrlclick.sh",end              # ctrl+click at cursor
+alt+ctrl+shift+v start,sh "~/bin/keynav-ctrlclick.sh 1500 300",end # ctrl+click at spot 1
+alt+ctrl+shift+b start,sh "~/bin/keynav-ctrlclick.sh 1620 300",end # ctrl+click at spot 2
+
+# ═══════════════════════════════════════════════════════════════════════
+# HOP SCRIPT — repeat a multi-spot click sequence N times
+# ═══════════════════════════════════════════════════════════════════════
+# Edit ~/bin/keynav-hop.sh to define your spot list (coordinates + buttons).
+# Then bind a key to run it with a count:
+#
+#   alt+ctrl+h   →  hops through all defined spots once
+#   alt+ctrl+j   →  hops through all defined spots 10 times
+#   alt+ctrl+k   →  hops through all defined spots 50 times
+#   alt+ctrl+l   →  hops through all defined spots 200 times (batch)
+#
+alt+ctrl+h start,sh "~/bin/keynav-hop.sh 1",end
+alt+ctrl+j start,sh "~/bin/keynav-hop.sh 10",end
+alt+ctrl+k start,sh "~/bin/keynav-hop.sh 50",end
+alt+ctrl+l start,sh "~/bin/keynav-hop.sh 200",end  # batch mode
+
+# ═══════════════════════════════════════════════════════════════════════
+# COORDINATE DISCOVERY — show current cursor position as a notification
+# ═══════════════════════════════════════════════════════════════════════
+# Position cursor (via keynav navigation or mouse), then press alt+ctrl+d
+# to see the absolute screen coordinates in a notification.
+alt+ctrl+d start,sh "~/bin/keynav-discover.sh 2>/dev/null",end
+
+F3 start,grid 1x1,warp,record ~/.keynav_macros
+shift+F3 start,grid 1x1,warp,playback
+
+# ═══════════════════════════════════════════════════════════════════════
+# MEDIA KEY GLOBAL TRIGGERS — repurposed idle keys
+# Each includes 'start' so it's grabbed globally (no need to be in keynav mode).
+# ═══════════════════════════════════════════════════════════════════════
+
+# F13 (was XF86HomePage) — jump to top-left quadrant (taskbar, window tabs, etc.)
+F13    start,grid 4x4,cut-left,cut-up,warp
+
+# F14 (was XF86Mail) — jump to top-right quadrant (notifications, tray, close buttons)
+F14    start,grid 4x4,cut-right,cut-up,warp
+
+# F15 (was XF86Calculator) — jump to bottom-right quadrant (status bars, scrollbars)
+F15    start,grid 4x4,cut-right,cut-down,warp
+
+# F16 (was XF86Sleep) — jump to screen center for fine-navigation
+F16    start,grid 1x1,cut-left 0.75,cut-right 0.667,cut-up 0.75,cut-down 0.667,warp
+
+# F17 (was XF86WakeUp) — windowzoom: constrain keynav to current window
+F17    start,windowzoom,warp
